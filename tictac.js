@@ -150,13 +150,13 @@ function select(e) {
         
         if (xoro == 1) {
             e.target.className = 'Xcomplete';
-            e.target.innerHTML = "<img src='cross.png'>";
+            e.target.innerHTML = "<img src='images/cross.png'>";
             winCheck(e);
             xoro = 0;
         }
         else {
             e.target.className = 'ocomplete';
-            e.target.innerHTML = "<img src='o.png'>";
+            e.target.innerHTML = "<img src='images/o.png'>";
             winCheck(e);
             xoro = 1;
         }
