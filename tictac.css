@@ -1,0 +1,119 @@
+h1 {
+    font-family: Arial, 'helvetica Neue', Helvetica, sans-serif;
+    margin: auto;
+    text-align: center;
+    padding-bottom: 60px;
+}
+h2 {
+    font-family: Arial, 'helvetica Neue', Helvetica, sans-serif;
+    margin: auto;
+    text-align: center;
+}
+
+.gameboard {
+    width: 280px;
+    height: 280px;
+    margin: auto;
+    border-radius: 25px;
+}
+
+.gameboard img {
+    width:80px;
+    height: 80px;
+    padding: 0px;
+    margin: 0px;
+}
+
+#s1 {
+    float:left;
+    width: 80px;
+    Height: 80px;
+    border-bottom: 1px solid black;
+    border-right: 1px solid black;
+    padding: 0px;
+    margin: 0px;
+}
+
+#s2 {
+    float:left;
+    width: 80px;
+    height: 80px;
+    border-bottom: 1px solid black;
+    border-right: 1px solid black;
+    border-left: 1px solid black;
+    padding: 0px;
+    margin: 0px;
+}
+
+#s3 {
+    float:left;
+    Width: 80px;
+    Height: 80px;
+    border-bottom: 1px solid black;
+    border-left: 1px solid black;
+    padding: 0px;
+    margin: 0px;
+}
+
+#s4 {
+    float:left;
+    Width: 80px;
+    Height: 80px;
+    border-bottom: 1px solid black;
+    border-right: 1px solid black;
+    border-top: 1px solid black;
+    padding: 0px;
+    margin: 0px;
+}
+
+#s5 {
+    float:left;
+    Width: 80px;
+    Height: 80px;
+    border: 1px solid black;
+    padding: 0px;
+    margin: 0px;
+}
+
+#s6 {
+    float:left;
+    Width: 80px;
+    Height: 80px;
+    border-bottom: 1px solid black;
+    border-left: 1px solid black;
+    border-top:1px solid black;
+    padding: 0px;
+    margin: 0px;
+}
+
+#s7 {
+    float:left;
+    Width: 80px;
+    Height: 80px;
+    border-right: 1px solid black;
+    border-top: 1px solid black;
+    padding: 0px;
+    margin: 0px;
+
+}
+
+#s8 {
+    float:left;
+    Width: 80px;
+    Height: 80px;
+    border-top: 1px solid black;
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+    padding: 0px;
+    margin: 0px;
+}
+
+#s9 {
+    float:left;
+    Width: 80px;
+    Height: 80px;
+    border-left: 1px solid black;
+    border-top:1px solid black;
+    padding: 0px;
+    margin: 0px;
+}
