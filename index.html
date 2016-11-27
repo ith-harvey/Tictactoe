@@ -2,11 +2,34 @@
 <head>
 <link rel="stylesheet" type="text/css" href="tictac.css">
 </head>
-    
 <body>
-    <h1> This is Tic Tac Toe</h1>
+<div class ="title">
+    <h1>Tic Tac Toe</h1>
     <h2 id='h2'></h2>
-    <div class="gameboard">
+</div>
+    <div id="overlay">
+    <h3 id="h3"></h3>    
+    <form id="field" onsubmit="return false">
+        Player 1's name: <input type="name" name="Player1" id="Player1"><br>
+            Player 2's name: <input type="name" name="Player2" id="Player2">
+            <input type="submit" value="Continue" id="submit">
+     </form>
+        </div>
+    <div id="Score">
+        <div id="p1Score">Player 1's Score:<div id="scoreNum1"></div>
+        </div>
+        <div id="p2Score">Player 2's Score:<div id="scoreNum2"></div>
+        </div>
+    </div>
+    <div id="statusContain">
+        <div id="playsMade">
+        </div>
+        <div class="restart button">
+            <button id="restart">Play again</button>
+        </div>
+    </div>
+    <div class="gameboard" id='gameboard'>
+        <img src="Redline.png" alt="rline" id="rLineVert">
 <div class="top">
   <div class="container">
     <div class="box" id="s1"></div>
@@ -33,7 +56,19 @@
   </div>
 </div>
 </div>
-    <script type="text/javascript" src="tictac.js"></script>
+
+
+
+    
+<audio id="headShot">
+<source src="soundEffects/Headshot%20Sound%20Effect%20D.mp3" type="audio/mpeg">
+</audio>
+    
+<audio id="mKillz">
+<source src="soundEffects/monsterkil_635h73sl.mp3" type="audio/mpeg">
+</audio>
+    
+    <script type="text/javascript" src="Tictac2.js"></script>
     <script type="text/javascript" src="jquery-1.12.1.js"></script>
 </body>
 

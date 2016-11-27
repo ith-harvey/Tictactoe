@@ -32,104 +32,23 @@ s7.addEventListener('click', select, false);
 s8.addEventListener('click', select, false);
 s9.addEventListener('click', select, false);
 
+var myArray1 = new Array(3);
 
-function winCheck(e) {
-    if (s1.className == 'Xcomplete' && s2.className == 'Xcomplete' && s3.className == 'Xcomplete') {
-        console.log('X wins');
-        gameOverX();
-        }
-    else if (s4.className == 'Xcomplete' &&
-             s5.className == 'Xcomplete' &&
-             s6.className == 'Xcomplete') {
-             console.log('X wins w/row 2');
-             gameOverX();
-    }
-    else if (s7.className == 'Xcomplete' &&
-             s8.className == 'Xcomplete' &&
-             s9.className == 'Xcomplete') {
-             console.log('X wins w/row 3');
-             gameOverX();
-        }
-    else if (s1.className == 'Xcomplete' &&
-             s5.className == 'Xcomplete' &&
-             s9.className == 'Xcomplete') {
-             console.log('X wins');
-             gameOverX();
-        }
-    else if (s3.className == 'Xcomplete' &&
-             s5.className == 'Xcomplete' &&
-             s7.className == 'Xcomplete') {
-             console.log('X wins');
-             gameOverX();
-        }
-    else if (s1.className == 'Xcomplete' &&
-             s4.className == 'Xcomplete' &&
-             s7.className == 'Xcomplete') {
-             console.log('X wins');
-             gameOverX();
-        }
-     else if (s2.className == 'Xcomplete' &&
-             s5.className == 'Xcomplete' &&
-             s8.className == 'Xcomplete') {
-             console.log('X wins');
-             gameOverX();
-        }
-     else if (s3.className == 'Xcomplete' &&
-             s6.className == 'Xcomplete' &&
-             s9.className == 'Xcomplete') {
-             console.log('X wins');
-             gameOverX();
-        }
-    else if (s1.className == 'ocomplete' && s2.className == 'ocomplete' && s3.className == 'ocomplete') {
-             console.log('o wins');
-             gameOverO();
-        }
-    else if (s4.className == 'ocomplete' &&
-             s5.className == 'ocomplete' &&
-             s6.className == 'ocomplete') {
-             console.log('o wins w/row 2');
-             gameOverO();
-    }
-    else if (s7.className == 'ocomplete' &&
-             s8.className == 'ocomplete' &&
-             s9.className == 'ocomplete') {
-             console.log('o wins w/row 3');
-             gameOverO();
-        }
-    else if (s1.className == 'ocomplete' &&
-             s5.className == 'ocomplete' &&
-             s9.className == 'ocomplete') {
-             console.log('o wins');
-             gameOverO();
-        }
-    else if (s3.className == 'ocomplete' &&
-             s5.className == 'ocomplete' &&
-             s7.className == 'ocomplete') {
-             console.log('o wins');
-             gameOverO();
-        }
-    else if (s1.className == 'ocomplete' &&
-             s4.className == 'ocomplete' &&
-             s7.className == 'ocomplete') {
-             console.log('o wins');
-             gameOverO();
-        }
-     else if (s2.className == 'ocomplete' &&
-             s5.className == 'ocomplete' &&
-             s8.className == 'ocomplete') {
-             console.log('o wins');
-             gameOverO();
-        }
-     else if (s3.className == 'ocomplete' &&
-             s6.className == 'ocomplete' &&
-             s9.className == 'ocomplete') {
-             console.log('o wins');
-             gameOverO();
-        }
-    else {
-        
-    }
+var start = ' ';
+
+for(var i=0; i < 3; i++) {
+    for(var j=0; j<3; i++) {
+        myArray1[i][j] = start;
+        start = start +1;
 }
+}  
+
+    for(var i=0; i < 3; i++) {
+        for(var j=0; j<3; i++) { 
+            document.write(myArray1[i][j]);
+}
+}
+
     
     
 function gameOverO() {
