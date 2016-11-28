@@ -346,10 +346,30 @@ function onclickfunc() {
     if (boxNumber == "false") {
         event.target.setAttribute("data-player", turn);
         turn = turn ? 0 : 1;
-        processTurn();
+        processBoard();
+        displayTurn();
     }
 }
 
+function processBoard() {
+    
+    if (gameover) return;
+    
+    // processing rows
+    for (let x = 0; x < 3; x++) {
+        processBoxGroup(3*x, 3*x+3, (y) -> y+1); 
+    }
+    
+    // processing columns
+    for (let x = 0; x < 3; x++){
+       processBoxGroup(0, x+7, (y) -> y+3);     
+    }
+    
+    // processing diagonals
+    processBoxGroup(0, 9, (y) -> y+4);
+    processBoxGroup(2, 7, (y) -> y+2);
+    
+}    
 
 function processBoxGroup(initial, condition, increment) {
     let state = -1;
@@ -377,44 +397,11 @@ function processBoxGroup(initial, condition, increment) {
     
 }
 
-function rowIncrement(y) {
-    return y+=1;
+function displayTurn() {
+    
+    
 }
-
-function columnIncrement(y) {
-    return y+3;
-}
-
-function diag1Increment(y) {
-    return y+4;
-}
-
-function diag2Increment(y) {
-    return y+2;
-}
-
-
-function processTurn() {
-    
-    if (gameover) return;
-    
-    // processing rows
-    for (let x = 0; x < 3; x++) {
-        processBoxGroup(3*x, 3*x+3, rowIncrement); 
-        
-    }
-    
-    // processing columns
-    for (let x = 0; x < 3; x++){
-       processBoxGroup(0, x+7, columnIncrement);     
-    }
-    
-    // processing diagonals
-    processBoxGroup(0, 9, diag1Increment);
-    processBoxGroup(2, 7, diag2Increment);
-    
-}         
-                 
+          
 
 function onclickfunc1() {
     if(slot[event.target.id]['xoro'] <= 0) {
@@ -512,3 +499,4 @@ function Multikill(whowon) {
 
 submit.addEventListener("click",submitform, false);
 restart.addEventListener("click", restarting, false);
+
