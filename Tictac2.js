@@ -23,7 +23,7 @@ var rl = document.getElementById('rLineVert');
 var headShot = document.getElementById('headShot');
 var mKillz = document.getElementById("mKillz");
 
-var pM = document.getElementById('playsMade');
+var turnBoard = document.getElementById('playsMade');
 
 var p1Score = document.getElementById('p1Score');
 var scoreNum1 = document.getElementById("scoreNum1");
@@ -82,7 +82,7 @@ for (var i = 0; i < 3; i++){
         }
       rl.id = "rLineVert";
       Gb.className = "gameboard";
-      pM.innerHTML = " ";
+      turnBoard.innerHTML = " ";
       turn = 1;
       
   }  
@@ -132,7 +132,7 @@ function xWin(gcPath) {
         rl.id = "rLineDiag2"
     }
     player1Score += 1;
-    pM.textContent += "\n\n" + player1 + ' Wins';
+    turnBoard.textContent += "\n\n" + player1 + ' Wins';
     p1Score.textContent = "Player 1's Score: " + player1Score;
     Multikill('x');
     
@@ -167,7 +167,7 @@ function oWin(gcPath) {
         rl.id = "rLineDiag2"
     }
     player2Score += 1;
-    pM.textContent += "\n\n" + player2 + ' Wins';
+    turnBoard.textContent += "\n\n" + player2 + ' Wins';
     p2Score.textContent = "Player 2's Score: " + player2Score;
     Multikill('o');
 }
@@ -345,9 +345,9 @@ function onclickfunc() {
     var boxNumber = event.target.getAttribute("data-player");
     if (boxNumber == "false") {
         event.target.setAttribute("data-player", turn);
-        turn = turn ? 0 : 1;
         processBoard();
         displayTurn();
+        turn = turn ? 0 : 1;
     }
 }
 
@@ -357,17 +357,17 @@ function processBoard() {
     
     // processing rows
     for (let x = 0; x < 3; x++) {
-        processBoxGroup(3*x, 3*x+3, (y) -> y+1); 
+        processBoxGroup(3*x, 3*x+3, (y) => y+1); 
     }
     
     // processing columns
     for (let x = 0; x < 3; x++){
-       processBoxGroup(0, x+7, (y) -> y+3);     
+       processBoxGroup(0, x+7, (y) => y+3);     
     }
     
     // processing diagonals
-    processBoxGroup(0, 9, (y) -> y+4);
-    processBoxGroup(2, 7, (y) -> y+2);
+    processBoxGroup(0, 9, (y) => y+4);
+    processBoxGroup(2, 7, (y) => y+2);
     
 }    
 
@@ -398,7 +398,13 @@ function processBoxGroup(initial, condition, increment) {
 }
 
 function displayTurn() {
+    let boxes = htmlToArray(document.getElementsByClassName("box"));
+    let boxIndex = boxes.indexOf(event.target);
     
+    let rowNames = ["top", "top", "top", "middle", "middle", "middle", "bottom", "bottom", "bottom"];
+    let columnsNames = ["left", "center", "right", "left", "center", "right", "left", "center", "right"];
+    
+    turnBoard.textContent += "\nPlayer " + turn + " has made a move in " + rowNames[boxIndex] + ' ' + columnsNames[boxIndex];
     
 }
           
@@ -413,46 +419,6 @@ function onclickfunc1() {
 else{
     console.log("there is a 1(x) or 4(o) in the slot");
     }
-}
-
-function playsMade(play) { 
-      if (slot[play]['xoro'] == 1) {
-          playText(player1);
-          
-      }
-      else {
-        playText(player2);
-      }
-    function playText(name) {
-          if (play == "s1") {
-             pM.textContent += "\n" + name + " has made a move in top left";
-          }
-          else if (play == "s2") {
-             pM.textContent += "\n" + name + " has made a move in top middle";
-          }
-          else if (play == "s3") {
-             pM.textContent += "\n" + name + " has made a move in top right"
-          }
-          else if (play == "s4") {
-             pM.textContent += "\n" + name + " has made a move in middle left";
-          }
-          else if (play == "s5") {
-             pM.textContent += "\n" + name + " has made a move in the center";
-          }
-          else if (play == "s6") {
-             pM.textContent += "\n" + name + " has made a move in middle right";
-          }
-          else if (play == "s7") {
-             pM.textContent += "\n" + name + " has made a move in bottom left";
-          }
-          else if (play == "s8") {
-             pM.textContent += "\n" + name + " has made a move in bottom middle";
-          }
-          else if (play == "s9") {
-             pM.textContent += "\n" + name + " has made a move in bottom right" ;
-          }
-        }
-    
 }
 
 function submitform() {
@@ -500,3 +466,4 @@ function Multikill(whowon) {
 submit.addEventListener("click",submitform, false);
 restart.addEventListener("click", restarting, false);
 
+let htmlToArray = (arr) => [].slice.call(arr);
