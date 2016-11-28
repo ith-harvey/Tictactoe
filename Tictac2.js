@@ -2,19 +2,19 @@
 
 /*javascript object - key value mapping
 */
-var map = {
- s1: document.getElementById('s1'),
- s2: document.getElementById('s2'),
- s3: document.getElementById('s3'),
-
- s4: document.getElementById('s4'),
- s5: document.getElementById('s5'),
- s6: document.getElementById('s6'),
-
- s7: document.getElementById('s7'),
- s8: document.getElementById('s8'),
- s9: document.getElementById('s9'),
-}
+//var map = {
+// s1: document.getElementById('s1'),
+// s2: document.getElementById('s2'),
+// s3: document.getElementById('s3'),
+//
+// s4: document.getElementById('s4'),
+// s5: document.getElementById('s5'),
+// s6: document.getElementById('s6'),
+//
+// s7: document.getElementById('s7'),
+// s8: document.getElementById('s8'),
+// s9: document.getElementById('s9'),
+//}
 
 var Gb = document.getElementById('gameboard');
 var h2 = document.getElementById('h2');
@@ -52,6 +52,9 @@ var mKillP2 = 0;
 var xoro
 var player1 
 var player2
+
+var gameover = false;
+
 
 for (var i = 0; i < 3; i++){
     arr1[i]= new Array(3);
@@ -338,10 +341,85 @@ function goCheck() {
 }
     
 
-function onclickfunc(e) {
-    if(slot[e.target.id]['xoro'] <= 0) {
-        slot[e.target.id]['xoro'] = nextTurn(e);
-        playsMade(e.target.id);
+function onclickfunc() {
+    var boxNumber = event.target.getAttribute("data-player");
+    if (boxNumber == "false") {
+        event.target.setAttribute("data-player", turn);
+        turn = turn ? 0 : 1;
+        processTurn();
+    }
+}
+
+
+function processBoxGroup(initial, condition, increment) {
+    let state = -1;
+    let hasWon = true;
+    let winner = -1;
+    
+    for (let y = initial; y < condition; y = increment(y)) {
+        let attr = document.getElementById("s" + y).getAttribute("data-player");
+        if(attr == "false") {
+            hasWon = false;
+            break;
+        }
+        if(state == -1) {
+            state = attr;
+            winner = attr;
+        }
+        else if(state != attr){
+            hasWon = false;
+            break;
+        }
+    }
+    if(hasWon) {
+      console.log("Player " + winner + " has won!");  
+    }
+    
+}
+
+function rowIncrement(y) {
+    return y+=1;
+}
+
+function columnIncrement(y) {
+    return y+3;
+}
+
+function diag1Increment(y) {
+    return y+4;
+}
+
+function diag2Increment(y) {
+    return y+2;
+}
+
+
+function processTurn() {
+    
+    if (gameover) return;
+    
+    // processing rows
+    for (let x = 0; x < 3; x++) {
+        processBoxGroup(3*x, 3*x+3, rowIncrement); 
+        
+    }
+    
+    // processing columns
+    for (let x = 0; x < 3; x++){
+       processBoxGroup(0, x+7, columnIncrement);     
+    }
+    
+    // processing diagonals
+    processBoxGroup(0, 9, diag1Increment);
+    processBoxGroup(2, 7, diag2Increment);
+    
+}         
+                 
+
+function onclickfunc1() {
+    if(slot[event.target.id]['xoro'] <= 0) {
+        slot[event.target.id]['xoro'] = nextTurn(event);
+        playsMade(event.target.id);
         goCheck();
     }
     
@@ -434,15 +512,3 @@ function Multikill(whowon) {
 
 submit.addEventListener("click",submitform, false);
 restart.addEventListener("click", restarting, false);
-
-s1.addEventListener("click", onclickfunc, false);
-s2.addEventListener("click", onclickfunc, false);
-s3.addEventListener("click", onclickfunc, false);
-
-s4.addEventListener("click", onclickfunc, false);
-s5.addEventListener("click", onclickfunc, false);
-s6.addEventListener("click", onclickfunc, false);
-
-s7.addEventListener("click", onclickfunc, false);
-s8.addEventListener("click", onclickfunc, false);
-s9.addEventListener("click", onclickfunc, false);

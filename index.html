@@ -15,47 +15,72 @@
             <input type="submit" value="Continue" id="submit">
      </form>
         </div>
-    <div id="Score">
-        <div id="p1Score">Player 1's Score:<div id="scoreNum1"></div>
+    <div id="display-wrapper">
+        <div id ="game-info">
+            <div id="score">
+                <div id="p1Score">Player 1's Score:<div id="scoreNum1"></div>
+                </div>
+                <div id="p2Score">Player 2's Score:<div id="scoreNum2"></div>
+                </div>
+            </div>
+            <div id="statusContain">
+                <div id="playsMade">
+                </div>
+                <div class="restart button">
+                    <button id="restart">Play again</button>
+                </div>
+            </div>
         </div>
-        <div id="p2Score">Player 2's Score:<div id="scoreNum2"></div>
+        <div id='gameboard'>
+            <img src="Redline.png" alt="rline" id="rLineVert">
+            <div class="top">
+                <div class="box" id="s0" data-player=false onclick="onclickfunc()">
+                    <img src='images/cross.png' class='imgg x'>
+                    <img src='images/o.png' class='imgg o'>
+                </div>
+                <div class="box" id="s1" data-player=false onclick="onclickfunc()">
+                    <img src='images/cross.png' class='imgg x'>
+                    <img src='images/o.png' class='imgg o'>
+                </div>
+                <div class="box" id="s2" data-player=false onclick="onclickfunc()">
+                    <img src='images/cross.png' class='imgg x'>
+                    <img src='images/o.png' class='imgg o'>
+                </div>
+            </div>
+
+
+            <div class="middle">
+                <div class="box" id="s3" data-player=false onclick="onclickfunc()">
+                    <img src='images/cross.png' class='imgg x'>
+                    <img src='images/o.png' class='imgg o'>
+                </div> 
+                <div class="box" id="s4" data-player=false onclick="onclickfunc()">
+                    <img src='images/cross.png' class='imgg x'>
+                    <img src='images/o.png' class='imgg o'>
+                </div>  
+                <div class="box" id="s5" data-player=false onclick="onclickfunc()">
+                    <img src='images/cross.png' class='imgg x'>
+                    <img src='images/o.png' class='imgg o'>
+                </div>
+            </div>
+
+
+            <div class="bottom">
+                <div class="box" id="s6" data-player=false onclick="onclickfunc()">
+                    <img src='images/cross.png' class='imgg x'>
+                    <img src='images/o.png' class='imgg o'>
+                </div>
+                <div class="box" id="s7" data-player=false onclick="onclickfunc()">
+                    <img src='images/cross.png' class='imgg x'>
+                    <img src='images/o.png' class='imgg o'>
+                </div>    
+                <div class="box" id="s8" data-player=false onclick="onclickfunc()">
+                    <img src='images/cross.png' class='imgg x'>
+                    <img src='images/o.png' class='imgg o'>
+                </div>
+            </div>
         </div>
     </div>
-    <div id="statusContain">
-        <div id="playsMade">
-        </div>
-        <div class="restart button">
-            <button id="restart">Play again</button>
-        </div>
-    </div>
-    <div class="gameboard" id='gameboard'>
-        <img src="Redline.png" alt="rline" id="rLineVert">
-<div class="top">
-  <div class="container">
-    <div class="box" id="s1"></div>
-    <div class="box" id="s2"></div>
-    <div class="box" id="s3"></div>
-  </div>
-</div>
-    
-    
-<div class="middle">
-  <div class="container">
-    <div class="box" id="s4"></div> 
-    <div class="box" id="s5"></div>  
-    <div class="box" id="s6"></div>
-  </div>
-</div>
-    
-    
-<div class="bottom">
-  <div class="container">
-    <div class="box" id="s7"></div>
-    <div class="box" id="s8"></div>    
-    <div class="box" id="s9"></div>
-  </div>
-</div>
-</div>
 
 
 
