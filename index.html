@@ -1,102 +1,108 @@
 <html>
+
 <head>
-<link rel="stylesheet" type="text/css" href="tictac.css">
+  <link rel="stylesheet" type="text/css" href="tictac.css">
 </head>
+
 <body>
-<div class ="title">
-    <h1>Tic Tac Toe</h1>
-    <h2 id='h2'></h2>
-</div>
+  <div id=program-container>
     <div id="overlay">
-    <h3 id="h3"></h3>    
-    <form id="field" onsubmit="return false">
-        Player 1's name: <input type="name" name="Player1" id="Player1"><br>
-            Player 2's name: <input type="name" name="Player2" id="Player2">
-            <input type="submit" value="Continue" id="submit">
-     </form>
-        </div>
-    <div id="display-wrapper">
-        <div id ="game-info">
-            <div id="score">
-                <div id="p1Score">Player 1's Score:<div id="scoreNum1"></div>
-                </div>
-                <div id="p2Score">Player 2's Score:<div id="scoreNum2"></div>
-                </div>
-            </div>
-            <div id="statusContain">
-                <div id="playsMade">
-                </div>
-                <div class="restart button">
-                    <button id="restart">Play again</button>
-                </div>
-            </div>
-        </div>
-        <div id='gameboard'>
-            <img src="Redline.png" alt="rline" id="rLineVert">
-            <div class="top">
-                <div class="box" id="s0" data-player=false onclick="onclickfunc()">
-                    <img src='images/cross.png' class='imgg x'>
-                    <img src='images/o.png' class='imgg o'>
-                </div>
-                <div class="box" id="s1" data-player=false onclick="onclickfunc()">
-                    <img src='images/cross.png' class='imgg x'>
-                    <img src='images/o.png' class='imgg o'>
-                </div>
-                <div class="box" id="s2" data-player=false onclick="onclickfunc()">
-                    <img src='images/cross.png' class='imgg x'>
-                    <img src='images/o.png' class='imgg o'>
-                </div>
-            </div>
-
-
-            <div class="middle">
-                <div class="box" id="s3" data-player=false onclick="onclickfunc()">
-                    <img src='images/cross.png' class='imgg x'>
-                    <img src='images/o.png' class='imgg o'>
-                </div> 
-                <div class="box" id="s4" data-player=false onclick="onclickfunc()">
-                    <img src='images/cross.png' class='imgg x'>
-                    <img src='images/o.png' class='imgg o'>
-                </div>  
-                <div class="box" id="s5" data-player=false onclick="onclickfunc()">
-                    <img src='images/cross.png' class='imgg x'>
-                    <img src='images/o.png' class='imgg o'>
-                </div>
-            </div>
-
-
-            <div class="bottom">
-                <div class="box" id="s6" data-player=false onclick="onclickfunc()">
-                    <img src='images/cross.png' class='imgg x'>
-                    <img src='images/o.png' class='imgg o'>
-                </div>
-                <div class="box" id="s7" data-player=false onclick="onclickfunc()">
-                    <img src='images/cross.png' class='imgg x'>
-                    <img src='images/o.png' class='imgg o'>
-                </div>    
-                <div class="box" id="s8" data-player=false onclick="onclickfunc()">
-                    <img src='images/cross.png' class='imgg x'>
-                    <img src='images/o.png' class='imgg o'>
-                </div>
-            </div>
-        </div>
+      <h3 id="h3"></h3>
+      <div id="form-holder">
+        <form id="field" onsubmit="return false">
+          Player 1's name: <input type="name" name="Player1" id="Player1"><br> Player 2's name: <input type="name" name="Player2" id="Player2">
+          <input type="submit" onclick="submitForm()" value="Continue" id="submit">
+        </form>
+      </div>
     </div>
+    <div id="display-wrapper1">
+      <div id="display-wrapper">
+        <div class="title">
+          <h1>Tic Tac Toe</h1>
+        </div>
+        <div id="game-info">
+          <div id="score">
+            <div id="tally-p1">Player 1's Score:
+              <div id="scoreNum1"></div>
+            </div>
+            <div id="tally-p2">Player 2's Score:
+              <div id="scoreNum2"></div>
+            </div>
+          </div>
+          <div id="statusContain">
+            <div id="playsMade">
+            </div>
+            <div class="restart button">
+              <button id="restart" onclick="restartIt()">Play again</button>
+            </div>
+          </div>
+        </div>
+        <div id='gameboard' data-has-winner=false>
+          <img src="Redline.png" id="red-line">
 
 
+          <div id="top">
+            <div class="box" id="s0" data-player=false onclick="onclickfunc()">
+              <img src='images/cross.png' class='imgg x'>
+              <img src='images/o.png' class='imgg o'>
+            </div>
+            <div class="box" id="s1" data-player=false onclick="onclickfunc()">
+              <img src='images/cross.png' class='imgg x'>
+              <img src='images/o.png' class='imgg o'>
+            </div>
+            <div class="box" id="s2" data-player=false onclick="onclickfunc()">
+              <img src='images/cross.png' class='imgg x'>
+              <img src='images/o.png' class='imgg o'>
+            </div>
+          </div>
 
-    
-<audio id="headShot">
+
+          <div id="middle">
+            <div class="box" id="s3" data-player=false onclick="onclickfunc()">
+              <img src='images/cross.png' class='imgg x'>
+              <img src='images/o.png' class='imgg o'>
+            </div>
+            <div class="box" id="s4" data-player=false onclick="onclickfunc()">
+              <img src='images/cross.png' class='imgg x'>
+              <img src='images/o.png' class='imgg o'>
+            </div>
+            <div class="box" id="s5" data-player=false onclick="onclickfunc()">
+              <img src='images/cross.png' class='imgg x'>
+              <img src='images/o.png' class='imgg o'>
+            </div>
+          </div>
+
+          <div id="bottom">
+            <div class="box" id="s6" data-player=false onclick="onclickfunc()">
+              <img src='images/cross.png' class='imgg x'>
+              <img src='images/o.png' class='imgg o'>
+            </div>
+            <div class="box" id="s7" data-player=false onclick="onclickfunc()">
+              <img src='images/cross.png' class='imgg x'>
+              <img src='images/o.png' class='imgg o'>
+            </div>
+            <div class="box" id="s8" data-player=false onclick="onclickfunc()">
+              <img src='images/cross.png' class='imgg x'>
+              <img src='images/o.png' class='imgg o'>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <audio id="headShot">
 <source src="soundEffects/Headshot%20Sound%20Effect%20D.mp3" type="audio/mpeg">
 </audio>
-    
-<audio id="mKillz">
+
+  <audio id="mKillz">
 <source src="soundEffects/monsterkil_635h73sl.mp3" type="audio/mpeg">
 </audio>
-    
-    <script type="text/javascript" src="Tictac2.js"></script>
-    <script type="text/javascript" src="jquery-1.12.1.js"></script>
+
+  <script type="text/javascript" src="Tictac2.js"></script>
+  <script type="text/javascript" src="jquery-1.12.1.js"></script>
 </body>
 
 
-    
+
 </html>

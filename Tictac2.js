@@ -1,47 +1,17 @@
 
 
-/*javascript object - key value mapping
-*/
-//var map = {
-// s1: document.getElementById('s1'),
-// s2: document.getElementById('s2'),
-// s3: document.getElementById('s3'),
-//
-// s4: document.getElementById('s4'),
-// s5: document.getElementById('s5'),
-// s6: document.getElementById('s6'),
-//
-// s7: document.getElementById('s7'),
-// s8: document.getElementById('s8'),
-// s9: document.getElementById('s9'),
-//}
-
-var Gb = document.getElementById('gameboard');
-var h2 = document.getElementById('h2');
-var rl = document.getElementById('rLineVert');
-
 var headShot = document.getElementById('headShot');
 var mKillz = document.getElementById("mKillz");
 
 var turnBoard = document.getElementById('playsMade');
-
-var p1Score = document.getElementById('p1Score');
-var scoreNum1 = document.getElementById("scoreNum1");
-
-var p2Score = document.getElementById('p2Score');
-var scoreNum2 = document.getElementById("scoreNum2");
 
 var overlay = document.getElementById('overlay');
 var submit = document.getElementById('submit');
 var restart = document.getElementById('restart');
 var imgg = document.getElementsByClassName('imgg');
 
-var turn = 1
-var slot ={};
-var start = 1;
-var arr1 = new Array(3);
-var n = 0;
-var cts = 0;
+var turn = 1;
+var numberOfPlaysMade = 0;
 
 var player1Score = 0;
 var player2Score = 0;
@@ -49,397 +19,138 @@ var player2Score = 0;
 var mKillP1 = 0;
 var mKillP2 = 0;
 
-var xoro
-var player1 
-var player2
+var player1 = ""
+var player2 = ""
+var playerPrint = ""
 
 var gameover = false;
 
 
-for (var i = 0; i < 3; i++){
-    arr1[i]= new Array(3);
-    }
-
-for (var i = 0; i < 3; i++){
-    for (var j = 0; j < 3; j++){
-    var key = 's' + start;
-    slot[key] = { 
-        xoro: 0
-    };
-    arr1[i][j] = slot[key]; 
-    start += 1
-    }
-}
-
-
-  function restarting() {
-        for (var g = 1; g < 10; g++){
-          var y = 's' + g;
-          map[y].innerHTML = ' ';
-          slot[y]= { 
-             xoro: 0
-          };
-        }
-      rl.id = "rLineVert";
-      Gb.className = "gameboard";
-      turnBoard.innerHTML = " ";
-      turn = 1;
-      
-  }  
-
-function nextTurn(e) {
-    if (turn == 1) {
-        turn = 0;
-        e.target.innerHTML = "<img src='images/cross.png' class='imgg'>";
-        cts += 1;
-        return 1;  
-    }
-    
-    else {
-        turn = 1;
-        e.target.innerHTML = "<img src='images/o.png' class='imgg'>";
-        cts += 1;
-        return 4;
-    }
-}
-
-function xWin(gcPath) {
-    Gb.className += " dissableClick";
-    h2.innerHTML = 'X Wins';
-    
-    if (gcPath == "h1") {
-        rl.id = "rLineHoriz1";
-    }
-    else if (gcPath == "h2") {
-        rl.id = "rLineHoriz2"
-    }
-    else if (gcPath == "h3") {
-        rl.id = "rLineHoriz3"
-    }
-    else if (gcPath == "v1") {
-        rl.id = "rLineVert1"
-    }
-     else if (gcPath == "v2") {
-        rl.id = "rLineVert2"
-    }
-     else if (gcPath == "v3") {
-        rl.id = "rLineVert3"
-    }
-    else if (gcPath == "d1") {
-        rl.id = "rLineDiag1"
-    }
-      else if (gcPath == "d2") {
-        rl.id = "rLineDiag2"
-    }
-    player1Score += 1;
-    turnBoard.textContent += "\n\n" + player1 + ' Wins';
-    p1Score.textContent = "Player 1's Score: " + player1Score;
-    Multikill('x');
-    
-}
-
-function oWin(gcPath) {
-    
-    Gb.className += " dissableClick";
-    h2.innerHTML = 'O Wins';
-    if (gcPath == "h1") {
-        rl.id = "rLineHoriz1";
-    }
-    else if (gcPath == "h2") {
-        rl.id = "rLineHoriz2"
-    }
-    else if (gcPath == "h3") {
-        rl.id = "rLineHoriz3"
-    }
-     else if (gcPath == "v1") {
-        rl.id = "rLineVert1"
-    }
-     else if (gcPath == "v2") {
-        rl.id = "rLineVert2"
-    }
-     else if (gcPath == "v3") {
-        rl.id = "rLineVert3"
-    }
-      else if (gcPath == "d1") {
-        rl.id = "rLineDiag1"
-    }
-      else if (gcPath == "d2") {
-        rl.id = "rLineDiag2"
-    }
-    player2Score += 1;
-    turnBoard.textContent += "\n\n" + player2 + ' Wins';
-    p2Score.textContent = "Player 2's Score: " + player2Score;
-    Multikill('o');
-}
-
-
-function goCheck() {
-    
-        cats();
-        horizChck();
-        vertChck();
-        diagChck1();
-        diagChck2();
-        
-    
-            function horizChck() {
-            var gChck = 1;
-            var n = 0;
-            loop1:
-                for (var i = 0; i < arr1.length; i++){
-                    
-                loop2:
-                    for (var j = 0; j < 3; j++){
-                    var key = 's' + gChck;
-                    n = n + slot[key]['xoro'];
-                    gChck = gChck + 1;
-                         
-                            if (n == 12) {
-                                if (key + n == 's312') {
-                                   oWin("h1");
-                                   break loop1;
-                               }
-                                if (key + n == 's612') {
-                                   oWin("h2");
-                                   break loop1;
-                               }
-                                if (key + n == 's912') {
-                                   oWin("h3");
-                                   break loop1;
-                               }
-                                  
-                                }
-                            else if (n == 3) {
-                               if (key + n == 's33') {
-                                   xWin("h1");
-                                   break loop1;
-                               }
-                                if (key + n == 's63') {
-                                   xWin("h2");
-                                   break loop1;
-                               }
-                                if (key + n == 's93') {
-                                   xWin("h3");
-                                   break loop1;
-                               }
-                                    
-                                    
-                                }
-                            else {            
-                    }
-                    }
-                    n = 0;
-                }
-            }
-            
-            function vertChck() {
-            var gChck = 1;
-            var n = 0;
-            loop1:
-                for (var i = 0; i < arr1.length; i++){
-                    if (gChck == 10) {
-                        gChck = 2;
-                    }
-                    else if (gChck == 11) {
-                        gChck = 3;
-                    }
-                    else {}
-            loop2:
-                    for (var j = 0; j < 3; j++){
-                    var key = 's' + gChck;
-                    n = n + slot[key]['xoro'];
-                    gChck += 3;
-                   
-                        
-                    if (n == 12) {
-                        if (key + n == 's712') {
-                                   oWin("v1");
-                                   break loop1;
-                               }
-                        if (key + n == 's812') {
-                                   oWin("v2");
-                                   break loop1;
-                               }
-                        if (key + n == 's912') {
-                                   oWin("v3");
-                                   break loop1;
-                               }
-                        }
-                    else if (n == 3) {
-                         if (key + n == 's73') {
-                                   xWin("v1");
-                                   break loop1;
-                               }
-                         if (key + n == 's83') {
-                                   xWin("v2");
-                                   break loop1;
-                               }
-                         if (key + n == 's93') {
-                                   xWin("v3");
-                                   break loop1;
-                               }
-                        }
-                    else {                             
-                        }
-                    }
-                n = 0;    
-                }
-            }
-    
-            function diagChck1() {
-            var gChck = 1;
-            var n = 0;
-            loop1:
-                for (var i = 0; i < arr1.length; i++){
-                loop2:
-                    for (var j = 0; j < 3 && gChck < 10; j++){
-                            var key = 's' + gChck;
-                            n = n + slot[key]['xoro'];
-                            gChck += 4;
-                            if (n == 12) {
-                            if (key + n == 's912') {
-                                   oWin("d1");
-                                   break loop1;
-                                }
-                            }
-                            else if (n == 3) {
-                                if (key + n == 's93') {
-                                   xWin("d1");
-                                   break loop1;
-                                }
-                            }
-                }
-                    n = 0;
-            }
-            }
-            
-            function diagChck2() {
-            var gChck = 3;
-            var n = 0;
-            loop1:
-                for (var i = 0; i < arr1.length; i++){
-                loop2:
-                    for (var j = 0; j < 3 && gChck < 10 ; j++){
-                     var key = 's' + gChck; 
-                     n = n + slot[key]['xoro'];
-                     gChck += 2;
-                         if (n == 12) {
-                            if (key + n == 's712') {
-                                    oWin("d2");
-                                    break loop1;
-                                    }
-                         }
-                         else if (n == 3) {
-                            if (key + n == 's73') {
-                                xWin("d2");
-                                break loop1;
-                            }
-                         }
-                    }
-                }
-            }
-}
-    
-
 function onclickfunc() {
     var boxNumber = event.target.getAttribute("data-player");
-    if (boxNumber == "false") {
-        event.target.setAttribute("data-player", turn);
-        processBoard();
-        displayTurn();
-        turn = turn ? 0 : 1;
+
+    //checking if their is already an X or an O in the square
+    if (boxNumber == "false" && document.getElementById("gameboard").getAttribute("data-has-winner") == "false") {
+      // sets data-player to a 1 or a 0 (X or an O)
+      event.target.setAttribute("data-player", turn);
+      displayTurn();
+      processBoard();
+      ++numberOfPlaysMade
+      turn = turn ? 0 : 1;
     }
+    testCatsGame()
 }
 
 function processBoard() {
-    
-    if (gameover) return;
-    
     // processing rows
     for (let x = 0; x < 3; x++) {
-        processBoxGroup(3*x, 3*x+3, (y) => y+1); 
+        processBoxGroup(3 * x, 3 * x + 3, (y) => y + 1, "row" + x);
     }
-    
+
     // processing columns
     for (let x = 0; x < 3; x++){
-       processBoxGroup(0, x+7, (y) => y+3);     
+       processBoxGroup(x, x + 7, (y) => y + 3, "column" + x);
     }
-    
-    // processing diagonals
-    processBoxGroup(0, 9, (y) => y+4);
-    processBoxGroup(2, 7, (y) => y+2);
-    
-}    
 
-function processBoxGroup(initial, condition, increment) {
+    // processing diagonals
+    processBoxGroup(0, 9, (y) => y+4, "diagonal0");
+    processBoxGroup(2, 7, (y) => y+2, "diagonal1");
+}
+
+function processBoxGroup(initial, condition, increment, linePosition) {
     let state = -1;
     let hasWon = true;
     let winner = -1;
-    
+
+    //checks row passed in for winner
     for (let y = initial; y < condition; y = increment(y)) {
         let attr = document.getElementById("s" + y).getAttribute("data-player");
+
+        //if no play has been made in current square break
         if(attr == "false") {
             hasWon = false;
             break;
         }
+        //if play has been made in square change state to 1 or 0 (X or O)
         if(state == -1) {
             state = attr;
             winner = attr;
         }
-        else if(state != attr){
+        //if last play (X or O) doesn't match current play then this check (column or row) won't pass
+        else if (state != attr){
             hasWon = false;
             break;
         }
     }
     if(hasWon) {
-      console.log("Player " + winner + " has won!");  
+        console.log("Player " + winner + " has won!");
+        processWinner(linePosition);
     }
-    
+}
+
+function processWinner(linePosition) {
+    document.getElementById("gameboard").setAttribute("data-has-winner", true);
+    document.getElementById("red-line").setAttribute("data-position", linePosition);
+    playerPrint = turn==1 ? player1 : player2
+    turnBoard.textContent += "\n" + playerPrint +
+            " has won!"
+    winnerTally();
+}
+
+function winnerTally() {
+    console.log('in winnerTally',turn);
+    if(turn === 1) {
+        player1Score += 1;
+        document.getElementById("scoreNum1").textContent = player1Score;
+    }
+    else {
+        player2Score += 1;
+        document.getElementById("scoreNum2").textContent = player2Score;
+    }
 }
 
 function displayTurn() {
     let boxes = htmlToArray(document.getElementsByClassName("box"));
     let boxIndex = boxes.indexOf(event.target);
-    
-    let rowNames = ["top", "top", "top", "middle", "middle", "middle", "bottom", "bottom", "bottom"];
-    let columnsNames = ["left", "center", "right", "left", "center", "right", "left", "center", "right"];
-    
-    turnBoard.textContent += "\nPlayer " + turn + " has made a move in " + rowNames[boxIndex] + ' ' + columnsNames[boxIndex];
-    
-}
-          
 
-function onclickfunc1() {
-    if(slot[event.target.id]['xoro'] <= 0) {
-        slot[event.target.id]['xoro'] = nextTurn(event);
-        playsMade(event.target.id);
-        goCheck();
-    }
-    
-else{
-    console.log("there is a 1(x) or 4(o) in the slot");
-    }
+    let rowNames =
+        ["top", "top", "top", "middle", "middle",
+         "middle", "bottom", "bottom", "bottom"];
+
+    let columnsNames =
+        ["left", "center", "right", "left",
+         "center", "right", "left", "center", "right"];
+
+    playerPrint = turn==1 ? player1 : player2
+
+    turnBoard.textContent += "\n" + playerPrint +
+        " has made a move in " +
+        rowNames[boxIndex] + ' ' + columnsNames[boxIndex];
+
 }
 
-function submitform() {
+
+function restartIt() {
+    document.getElementById("gameboard").setAttribute("data-has-winner", false);
+    turnBoard.textContent = "";
+
+    let rowNames = ["top", "middle", "bottom"];
+    for (var x=0; x < 3; x++) {
+        for (var i=1; i < 6; i+=2) {
+            document.getElementById(rowNames[x])
+                .childNodes[i]
+                .setAttribute("data-player", "false");
+        }
+    }
+    turn = 1;
+}
+
+function submitForm() {
     overlay.id = "overlayh";
     player1 = document.getElementById('Player1').value;
     player2 = document.getElementById('Player2').value;
-}   
-
-function cats() {
-    var t = 1
-    for (var g = 1; g < 10; g++){
-        var y = 's' + g;
-        t = slot[y]['xoro'] * t
-        }
-    if (t > 0) {
-    Gb.className += " dissableClick";
-    h2.innerHTML = 'Cats Game';
-    }
-    else if (t = 0) {
-    }
 }
+
 
 function Multikill(whowon) {
     if (whowon == 'x') {
@@ -458,12 +169,16 @@ function Multikill(whowon) {
         }
         else {
         headShot.play();
-            
+
         }
     }
 }
 
-submit.addEventListener("click",submitform, false);
-restart.addEventListener("click", restarting, false);
-
 let htmlToArray = (arr) => [].slice.call(arr);
+
+function testCatsGame() {
+  if (numberOfPlaysMade === 9 && document.getElementById("gameboard").getAttribute("data-has-winner") === 'false') {
+    console.log('Cats game!');
+    turnBoard.textContent += "\n Cats game!"
+  }
+}
